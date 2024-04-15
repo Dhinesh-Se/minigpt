@@ -63,15 +63,20 @@ function displayMessage(content, isUserMessage) {
 async function getChatbotResponse(message) {
   const response = await axios.post(
     "https://api.openai.com/v1/completions",
+   {
+  "model": "gpt-3.5-turbo-16k",
+  "messages": [
     {
-      prompt: message,
-      model: "text-davinci-003",
-      temperature: 0.7,
-      max_tokens: 2000,
-      top_p: 1,
-      frequency_penalty: 1.0,
-      presence_penalty: 0.0,
-    },
+      "role": "user",
+      "content": ""
+    }
+  ],
+  "temperature": 1,
+  "max_tokens": 256,
+  "top_p": 1,
+  "frequency_penalty": 0,
+  "presence_penalty": 0
+}
     {
       headers: {
         "Content-Type": "application/json",
